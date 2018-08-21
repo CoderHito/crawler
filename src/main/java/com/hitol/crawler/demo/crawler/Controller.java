@@ -8,8 +8,8 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class Controller {
     public static void main(String[] args) throws Exception {
-        String crawlStorageFolder = "E:/crawler";// 定义爬虫数据存储位置
-        int numberOfCrawlers = 7;// 定义了7个爬虫，也就是7个线程
+        String crawlStorageFolder = "/Users/hitol/crawler";// 定义爬虫数据存储位置
+        int numberOfCrawlers = 5;// 定义了7个爬虫，也就是7个线程
 
         CrawlConfig config = new CrawlConfig();// 定义爬虫配置
         config.setCrawlStorageFolder(crawlStorageFolder);// 设置爬虫文件存储位置
@@ -32,7 +32,7 @@ public class Controller {
 //        controller.addSeed("http://www.ics.uci.edu/~welling/");
 //        controller.addSeed("http://www.ics.uci.edu/");
 
-        controller.addSeed("https://www.v2ex.com/?tab=jobs");
+        controller.addSeed("https://music.163.com/");
         /**
          * 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置
          */

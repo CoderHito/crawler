@@ -1,5 +1,6 @@
 package com.hitol.crawler.demo.crawler;
 
+
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -12,8 +13,7 @@ public class MyCrawler extends WebCrawler {
     /**
      * 正则表达式匹配指定的后缀文件
      */
-    private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
-            + "|png|mp3|mp4|zip|gz))$");
+    private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|zip|gz))$");
 
     /**
      * 这个方法主要是决定哪些url我们需要抓取，返回true表示是我们需要的，返回false表示不是我们需要的Url
@@ -23,9 +23,11 @@ public class MyCrawler extends WebCrawler {
      */
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
-        String href = url.getURL().toLowerCase();// 得到小写的url
-        return !FILTERS.matcher(href).matches() // 正则匹配，过滤掉我们不需要的后缀文件
-                && href.startsWith("http://www.ics.uci.edu/");// 只接受以“http://www.ics.uci.edu/”开头的url
+        // 得到小写的url
+        String href = url.getURL().toLowerCase();
+        // 正则匹配，过滤掉我们不需要的后缀文件// 只接受以“http://www.ics.uci.edu/”开头的url
+        return !FILTERS.matcher(href).matches()
+                && href.startsWith("https://music.163.com/");
     }
 
     /**
@@ -33,18 +35,27 @@ public class MyCrawler extends WebCrawler {
      */
     @Override
     public void visit(Page page) {
-        String url = page.getWebURL().getURL();// 获取url
-        System.out.println("URL: " + url);
+        // 获取url
+        String url = page.getWebURL().getURL();
 
-        if (page.getParseData() instanceof HtmlParseData) {// 判断是否是html数据
-            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();//// 强制类型转换，获取html数据对象
-            String text = htmlParseData.getText();//获取页面纯文本（无html标签）
-            String html = htmlParseData.getHtml();//获取页面Html
-            Set<WebURL> links = htmlParseData.getOutgoingUrls();// 获取页面输出链接
+        // 判断是否是html数据
+        if (page.getParseData() instanceof HtmlParseData) {
 
-            System.out.println("纯文本长度: " + text.length());
-            System.out.println("html长度: " + html.length());
-            System.out.println("链接个数 " + links.size());
+//            if (url.contains("song")){
+                System.out.println("URL: " + url);
+//            }
+//            //// 强制类型转换，获取html数据对象
+//            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
+//            //获取页面纯文本（无html标签）
+//            String text = htmlParseData.getText();
+//            //获取页面Html
+//            String html = htmlParseData.getHtml();
+//            // 获取页面输出链接
+//            Set<WebURL> links = htmlParseData.getOutgoingUrls();
+
+//            System.out.println("纯文本长度: " + text.length());
+//            System.out.println("html长度: " + html.length());
+//            System.out.println("链接个数 " + links.size());
         }
     }
 }
