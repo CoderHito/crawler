@@ -39,6 +39,6 @@ public class Controller {
         /**
          * 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置
          */
-        controller.start(MyCrawler.class, numberOfCrawlers);
+        controller.start(MusicCrawler.class, numberOfCrawlers);
     }
 }

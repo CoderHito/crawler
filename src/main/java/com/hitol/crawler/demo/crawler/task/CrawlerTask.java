@@ -1,7 +1,6 @@
 package com.hitol.crawler.demo.crawler.task;
 
-import com.hitol.crawler.demo.crawler.CrawlerFactory;
-import com.hitol.crawler.demo.crawler.MyCrawler;
+import com.hitol.crawler.demo.crawler.MusicCrawlerFactory;
 import com.hitol.crawler.demo.manager.WebPageManager;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
@@ -48,7 +47,7 @@ public class CrawlerTask {
         /**
          * 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置
          */
-        CrawlerFactory factory = new CrawlerFactory(manager);
+        MusicCrawlerFactory factory = new MusicCrawlerFactory(manager);
         controller.startNonBlocking(factory, numberOfCrawlers);
 //        controller.start(MyCrawler.class, numberOfCrawlers);
     }

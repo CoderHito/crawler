@@ -18,12 +18,12 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 @Component
-public class MyCrawler extends WebCrawler {
+public class MusicCrawler extends WebCrawler {
 
 
     private WebPageManager manager;
 
-    public MyCrawler(WebPageManager manager) {
+    public MusicCrawler(WebPageManager manager) {
         this.manager = manager;
     }
 
