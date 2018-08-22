@@ -1,8 +1,6 @@
-package com.hitol.crawler.demo.crawler.task;
+package com.hitol.crawler.crawler;
 
-import com.hitol.crawler.demo.manager.WebPageManager;
-import com.hitol.crawler.demo.model.WebPage;
-import com.hitol.crawler.demo.util.UUID;
+import com.hitol.crawler.manager.WebPageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

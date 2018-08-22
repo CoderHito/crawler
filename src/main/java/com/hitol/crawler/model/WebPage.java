@@ -1,4 +1,4 @@
-package com.hitol.crawler.demo.model;
+package com.hitol.crawler.model;
 
 
 import javax.persistence.Column;

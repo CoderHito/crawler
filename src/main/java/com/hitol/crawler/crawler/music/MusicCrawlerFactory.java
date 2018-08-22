@@ -1,6 +1,6 @@
-package com.hitol.crawler.demo.crawler;
+package com.hitol.crawler.crawler.music;
 
-import com.hitol.crawler.demo.manager.WebPageManager;
+import com.hitol.crawler.manager.WebPageManager;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 

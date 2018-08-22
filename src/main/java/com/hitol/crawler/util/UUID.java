@@ -1,4 +1,4 @@
-package com.hitol.crawler.demo.util;
+package com.hitol.crawler.util;
 
 public class UUID {
     public static String getUuid() {

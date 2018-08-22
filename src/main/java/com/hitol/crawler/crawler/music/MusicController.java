@@ -1,27 +1,19 @@
-package com.hitol.crawler.demo.crawler.task;
+package com.hitol.crawler.crawler.music;
 
-import com.hitol.crawler.demo.crawler.MusicCrawlerFactory;
-import com.hitol.crawler.demo.manager.WebPageManager;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+/**
+ *  -- test 使用
+ */
+public class MusicController {
+    public static void main(String[] args) throws Exception {
+        String crawlStorageFolder = "/Users/hitol/crawler";// 定义爬虫数据存储位置
+        int numberOfCrawlers = 5;// 定义了7个爬虫，也就是7个线程
 
-@Component
-public class CrawlerTask {
-    String crawlStorageFolder = "/Users/hitol/crawler";// 定义爬虫数据存储位置
-    int numberOfCrawlers = 5;// 定义了7个爬虫，也就是7个线程
-
-    @Resource
-    private WebPageManager manager;
-
-    @Scheduled(cron = "*/50 * * * * *")
-    public void crawlerTask() throws Exception {
         CrawlConfig config = new CrawlConfig();// 定义爬虫配置
         config.setCrawlStorageFolder(crawlStorageFolder);// 设置爬虫文件存储位置
 
@@ -43,13 +35,10 @@ public class CrawlerTask {
 //        controller.addSeed("http://www.ics.uci.edu/~welling/");
 //        controller.addSeed("http://www.ics.uci.edu/");
 
-        controller.addSeed("http://music.163.com/#/discover/playlist/?order=hot");
+        controller.addSeed("https://music.163.com/");
         /**
          * 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置
          */
-        MusicCrawlerFactory factory = new MusicCrawlerFactory(manager);
-        controller.startNonBlocking(factory, numberOfCrawlers);
-//        controller.start(MyCrawler.class, numberOfCrawlers);
+        controller.start(MusicCrawler.class, numberOfCrawlers);
     }
-
 }

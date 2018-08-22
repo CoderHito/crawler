@@ -1,19 +1,17 @@
-package com.hitol.crawler.demo.crawler;
+package com.hitol.crawler.crawler.music;
 
 
-import com.hitol.crawler.demo.manager.WebPageManager;
-import com.hitol.crawler.demo.model.WebPage;
-import com.hitol.crawler.demo.util.UUID;
+import com.hitol.crawler.manager.WebPageManager;
+import com.hitol.crawler.model.WebPage;
+import com.hitol.crawler.util.UUID;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -75,13 +73,13 @@ public class MusicCrawler extends WebCrawler {
             // 获取页面输出链接
             Set<WebURL> links = htmlParseData.getOutgoingUrls();
 
-            logger.info("text = " + text.length());
-            logger.info("html = " + html.length());
-            logger.info("links = " + links.size());
-            logger.info("------------------------------");
-            for (WebURL link : links) {
-                logger.info("--->" + link.toString());
-            }
+//            logger.info("text = " + text.length());
+//            logger.info("html = " + html.length());
+//            logger.info("links = " + links.size());
+//            logger.info("------------------------------");
+//            for (WebURL link : links) {
+//                logger.info("--->" + link.toString());
+//            }
 
         }
     }
