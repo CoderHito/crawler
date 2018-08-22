@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WebManagerImpl implements WebPageManager {
+public class WebPageManagerImpl implements WebPageManager {
     @Autowired
     private WebPageRepository repository;
 

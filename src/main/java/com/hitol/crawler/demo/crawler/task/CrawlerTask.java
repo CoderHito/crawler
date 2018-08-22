@@ -1,19 +1,27 @@
-package com.hitol.crawler.demo.crawler;
+package com.hitol.crawler.demo.crawler.task;
 
+import com.hitol.crawler.demo.crawler.CrawlerFactory;
+import com.hitol.crawler.demo.crawler.MyCrawler;
+import com.hitol.crawler.demo.manager.WebPageManager;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
-/**
- *  -- test 使用
- */
-public class Controller {
-    public static void main(String[] args) throws Exception {
-        String crawlStorageFolder = "/Users/hitol/crawler";// 定义爬虫数据存储位置
-        int numberOfCrawlers = 5;// 定义了7个爬虫，也就是7个线程
+import javax.annotation.Resource;
 
+@Component
+public class CrawlerTask {
+    String crawlStorageFolder = "/Users/hitol/crawler";// 定义爬虫数据存储位置
+    int numberOfCrawlers = 5;// 定义了7个爬虫，也就是7个线程
+
+@Resource
+private WebPageManager manager;
+    @Scheduled(cron="*/5 * * * * *")
+    public void crawlerTask() throws Exception {
         CrawlConfig config = new CrawlConfig();// 定义爬虫配置
         config.setCrawlStorageFolder(crawlStorageFolder);// 设置爬虫文件存储位置
 
@@ -39,6 +47,9 @@ public class Controller {
         /**
          * 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置
          */
-        controller.start(MyCrawler.class, numberOfCrawlers);
+        CrawlerFactory factory = new CrawlerFactory(manager);
+        controller.startNonBlocking(factory,numberOfCrawlers);
+//        controller.start(MyCrawler.class, numberOfCrawlers);
     }
+
 }

@@ -1,17 +1,32 @@
 package com.hitol.crawler.demo.crawler;
 
 
+import com.hitol.crawler.demo.manager.WebPageManager;
+import com.hitol.crawler.demo.model.WebPage;
+import com.hitol.crawler.demo.util.UUID;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+@Component
 public class MyCrawler extends WebCrawler {
+
+
+    private WebPageManager manager;
+
+    public MyCrawler(WebPageManager manager) {
+        this.manager = manager;
+    }
+
     Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 正则表达式匹配指定的后缀文件
@@ -46,6 +61,10 @@ public class MyCrawler extends WebCrawler {
 
 //            if (url.contains("song")){
             logger.info("URL = " + url);
+            WebPage webPage = new WebPage();
+            webPage.setId(UUID.getUuid());
+            webPage.setUrl(url);
+            manager.saveUrlInfo(webPage);
 //            }
 //            //// 强制类型转换，获取html数据对象
 //            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
