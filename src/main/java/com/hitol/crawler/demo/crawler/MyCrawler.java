@@ -5,11 +5,14 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.regex.Pattern;
 
 public class MyCrawler extends WebCrawler {
+    Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 正则表达式匹配指定的后缀文件
      */
@@ -42,7 +45,7 @@ public class MyCrawler extends WebCrawler {
         if (page.getParseData() instanceof HtmlParseData) {
 
 //            if (url.contains("song")){
-                System.out.println("URL: " + url);
+            logger.info("URL = " + url);
 //            }
 //            //// 强制类型转换，获取html数据对象
 //            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
