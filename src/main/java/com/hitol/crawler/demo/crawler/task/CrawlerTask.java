@@ -18,9 +18,10 @@ public class CrawlerTask {
     String crawlStorageFolder = "/Users/hitol/crawler";// 定义爬虫数据存储位置
     int numberOfCrawlers = 5;// 定义了7个爬虫，也就是7个线程
 
-@Resource
-private WebPageManager manager;
-    @Scheduled(cron="*/5 * * * * *")
+    @Resource
+    private WebPageManager manager;
+
+    @Scheduled(cron = "*/50 * * * * *")
     public void crawlerTask() throws Exception {
         CrawlConfig config = new CrawlConfig();// 定义爬虫配置
         config.setCrawlStorageFolder(crawlStorageFolder);// 设置爬虫文件存储位置
@@ -43,12 +44,12 @@ private WebPageManager manager;
 //        controller.addSeed("http://www.ics.uci.edu/~welling/");
 //        controller.addSeed("http://www.ics.uci.edu/");
 
-        controller.addSeed("https://music.163.com/");
+        controller.addSeed("http://music.163.com/#/discover/playlist/?order=hot");
         /**
          * 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置
          */
         CrawlerFactory factory = new CrawlerFactory(manager);
-        controller.startNonBlocking(factory,numberOfCrawlers);
+        controller.startNonBlocking(factory, numberOfCrawlers);
 //        controller.start(MyCrawler.class, numberOfCrawlers);
     }
 

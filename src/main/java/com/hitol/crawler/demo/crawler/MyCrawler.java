@@ -64,20 +64,25 @@ public class MyCrawler extends WebCrawler {
             WebPage webPage = new WebPage();
             webPage.setId(UUID.getUuid());
             webPage.setUrl(url);
-            manager.saveUrlInfo(webPage);
+//            manager.saveUrlInfo(webPage);
 //            }
 //            //// 强制类型转换，获取html数据对象
-//            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-//            //获取页面纯文本（无html标签）
-//            String text = htmlParseData.getText();
-//            //获取页面Html
-//            String html = htmlParseData.getHtml();
-//            // 获取页面输出链接
-//            Set<WebURL> links = htmlParseData.getOutgoingUrls();
+            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
+            //获取页面纯文本（无html标签）
+            String text = htmlParseData.getText();
+            //获取页面Html
+            String html = htmlParseData.getHtml();
+            // 获取页面输出链接
+            Set<WebURL> links = htmlParseData.getOutgoingUrls();
 
-//            System.out.println("纯文本长度: " + text.length());
-//            System.out.println("html长度: " + html.length());
-//            System.out.println("链接个数 " + links.size());
+            logger.info("text = " + text.length());
+            logger.info("html = " + html.length());
+            logger.info("links = " + links.size());
+            logger.info("------------------------------");
+            for (WebURL link : links) {
+                logger.info("--->" + link.toString());
+            }
+
         }
     }
 }
