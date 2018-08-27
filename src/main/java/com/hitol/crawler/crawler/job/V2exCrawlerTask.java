@@ -29,12 +29,12 @@ public class V2exCrawlerTask {
     private RedisRepository redisRepository;
 
 
-    @Scheduled(cron = "* */1 * * * *")
+    @Scheduled(cron = "*/10 * * * * *")
     public void crawlerTask() throws Exception {
         boolean flag = true;
         CrawlConfig config = new CrawlConfig();// 定义爬虫配置
         config.setCrawlStorageFolder(crawlStorageFolder);// 设置爬虫文件存储位置
-        config.setMaxDepthOfCrawling(2);
+        config.setMaxDepthOfCrawling(1);
         ProxyEntity proxyEntity = null;
         while (flag) {
             proxyEntity = redisRepository.getRandomly();
@@ -43,15 +43,16 @@ public class V2exCrawlerTask {
 //            System.getProperties().setProperty("http.proxyHost", proxyEntity.getIp());
 //            System.getProperties().setProperty("http.proxyPort", String.valueOf(proxyEntity.getPort()));
             if (proxyEntity != null){
-//                boolean isUseful = HttpUtil.verifyProxy(proxyEntity.getIp(),proxyEntity.getPort());
-//                if (isUseful) {
-//                    logger.info(proxyEntity.getIp() + ":" + proxyEntity.getPort() + "可以使用!");
-//                    flag = false;
-//                }
-                flag = false;
+                boolean isUseful = HttpUtil.verifyProxy(proxyEntity.getIp(),proxyEntity.getPort());
+                if (isUseful) {
+                    logger.info(proxyEntity.getIp() + ":" + proxyEntity.getPort() + "可以使用!");
+                    flag = false;
+                }
+//                flag = false;
             }
 
         }
+        logger.info("ip : {} port : {}",proxyEntity.getIp(),proxyEntity.getPort());
         config.setProxyHost(proxyEntity.getIp());
         config.setProxyPort(proxyEntity.getPort());
         /*
