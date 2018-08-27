@@ -9,6 +9,7 @@ import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 import org.jsoup.Jsoup;
+import org.jsoup.helper.Validate;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -42,6 +43,10 @@ public class V2exCrawler extends WebCrawler {
 
             Document document = Jsoup.parse(html);
             Element topics = document.getElementById("TopicsNode");
+            if (topics == null) {
+                return;
+            }
+            Validate.notEmpty("item_title");
             Elements title = topics.getElementsByClass("item_title");
             for (Element element : title) {
                 Elements links = element.getElementsByTag("a");
@@ -51,7 +56,7 @@ public class V2exCrawler extends WebCrawler {
                     logger.info("linkHref:" + linkHref);
                     logger.info("linkText:" + linkText);
 
-                    JobInfo jobInfo = new JobInfo(linkText,linkHref);
+                    JobInfo jobInfo = new JobInfo(linkText, linkHref);
                     manager.saveJobInfo(jobInfo);
 
                 }

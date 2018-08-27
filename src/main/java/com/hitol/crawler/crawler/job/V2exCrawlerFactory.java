@@ -15,6 +15,6 @@ public class V2exCrawlerFactory implements CrawlController.WebCrawlerFactory {
 
     @Override
     public WebCrawler newInstance() throws Exception {
-        return new MusicCrawler(manager);
+        return new V2exCrawler(manager);
     }
 }

@@ -2,6 +2,8 @@ package com.hitol.crawler.crawler;
 
 import com.hitol.crawler.manager.WebPageManager;
 import com.hitol.crawler.model.ProxyEntity;
+import com.hitol.crawler.repository.RedisRepository;
+import com.hitol.crawler.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,14 @@ public class TestTask {
     private WebPageManager manager;
 
     @Autowired
-    private RedisTemplate<String ,ProxyEntity> redisTemplate;
+    private RedisTemplate<String, ProxyEntity> redisTemplate;
 
-    @Scheduled(cron = "*/5 * * * * *")
+    @Autowired
+    private RedisRepository redisRepository;
+
+    //    @Scheduled(cron = "*/5 * * * * *")
     public void reportCurrentTime() {
-       logger.info("现在时间：" + dateFormat.format(new Date()));
+//       logger.info("现在时间：" + dateFormat.format(new Date()));
 
 //        WebPage webPage = new WebPage();
 //        webPage.setTitle("llll");
@@ -38,12 +43,13 @@ public class TestTask {
     }
 
 
-    @Scheduled(cron = "*/5 * * * * *")
+
+    //    @Scheduled(cron = "*/5 * * * * *")
     public void testRedis() {
         logger.info("测试redis");
-        Set<String> keys =  redisTemplate.keys("*");
+        Set<String> keys = redisTemplate.keys("*");
         for (String key : keys) {
-            logger.info("key = {},value = {}",key,getByKey(key).toString());
+            logger.info("key = {},value = {}", key, getByKey(key).toString());
         }
     }
 

@@ -1,5 +1,7 @@
 package com.hitol.crawler.model;
 
+import com.hitol.crawler.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +18,11 @@ public class JobInfo {
     @Column(length = 100)
     private String href;
 
+    public JobInfo(){
+    }
+
     public JobInfo(String title, String href) {
+        setId(UUID.getUuid());
         this.title = title;
         this.href = href;
     }
