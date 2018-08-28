@@ -13,7 +13,7 @@ public class JobInfo {
     @Id
     @Column(length = 32)
     private String id;
-    @Column(length = 100)
+    @Column(length = 255)
     private String title;
     @Column(length = 100)
     private String href;

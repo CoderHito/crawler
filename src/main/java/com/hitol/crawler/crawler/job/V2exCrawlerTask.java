@@ -43,16 +43,16 @@ public class V2exCrawlerTask {
 //            System.getProperties().setProperty("http.proxyHost", proxyEntity.getIp());
 //            System.getProperties().setProperty("http.proxyPort", String.valueOf(proxyEntity.getPort()));
             if (proxyEntity != null){
-//                boolean isUseful = HttpUtil.verifyProxy(proxyEntity.getIp(),proxyEntity.getPort());
-//                if (isUseful) {
-//                    logger.info(proxyEntity.getIp() + ":" + proxyEntity.getPort() + "可以使用!");
-//                    flag = false;
-
-//                }
-                flag = false;
+                boolean isUseful = HttpUtil.verifyProxy(proxyEntity.getIp(),proxyEntity.getPort());
+                if (isUseful) {
+                    logger.info(proxyEntity.getIp() + ":" + proxyEntity.getPort() + "可以使用!");
+                    flag = false;
+                }
+//                flag = false;
             }
 
         }
+        logger.info("ip : {} port : {}",proxyEntity.getIp(),proxyEntity.getPort());
         config.setProxyHost(proxyEntity.getIp());
         config.setProxyPort(proxyEntity.getPort());
         /*
