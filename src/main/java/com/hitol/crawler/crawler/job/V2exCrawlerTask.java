@@ -47,6 +47,7 @@ public class V2exCrawlerTask {
 //                if (isUseful) {
 //                    logger.info(proxyEntity.getIp() + ":" + proxyEntity.getPort() + "可以使用!");
 //                    flag = false;
+
 //                }
                 flag = false;
             }
